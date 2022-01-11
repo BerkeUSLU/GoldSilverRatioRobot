@@ -1,6 +1,8 @@
 package com.borsa.goldsilverratiorobot;
 
-import entities.RatioData;
+import controller.RatiDataController;
+import entity.RatioData;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,6 +10,7 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
+import service.RatioDataService;
 
 import java.util.Collections;
 
@@ -23,8 +26,10 @@ public class GoldSilverRatioRobotApplication {
         return builder.build();
     }
 
+    @Bean
+    public RatiDataController ratiDataController(RatioDataService service) {
 
-
+    }
 
 
 
@@ -45,6 +50,11 @@ public class GoldSilverRatioRobotApplication {
                 ResponseEntity<RatioData> data = restTemplate.exchange("https://www.goldapi.io/api/XAU/XAG/", HttpMethod.GET, entity, RatioData.class);
 
                 System.out.println(data);
+
+
+
+                //service.saveRatioData(data.getBody());
+
             }
         };
     }

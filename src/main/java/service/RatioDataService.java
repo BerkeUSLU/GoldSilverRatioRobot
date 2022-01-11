@@ -1,16 +1,24 @@
 package service;
 
-import entities.RatioData;
+import entity.RatioData;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import repository.RatioDataRepo;
 
 import java.util.List;
 
 @Service
+
 public class RatioDataService {
+
+    private final RatioDataRepo ratioDataRepo;
+
     @Autowired
-    RatioDataRepo ratioDataRepo;
+    public RatioDataService(RatioDataRepo repo) {
+        ratioDataRepo = repo;
+    }
 
 
     public List<RatioData> getRatioDataBetween(long timestampStart, long timestampEnd){

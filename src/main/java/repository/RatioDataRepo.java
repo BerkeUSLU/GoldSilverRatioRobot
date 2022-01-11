@@ -1,6 +1,6 @@
 package repository;
 
-import entities.RatioData;
+import entity.RatioData;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
