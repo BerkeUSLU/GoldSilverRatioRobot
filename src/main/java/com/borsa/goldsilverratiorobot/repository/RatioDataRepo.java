@@ -1,6 +1,6 @@
-package repository;
+package com.borsa.goldsilverratiorobot.repository;
 
-import entity.RatioData;
+import com.borsa.goldsilverratiorobot.entity.RatioData;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

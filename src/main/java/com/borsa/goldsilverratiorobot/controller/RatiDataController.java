@@ -1,10 +1,9 @@
-package controller;
+package com.borsa.goldsilverratiorobot.controller;
 
-import entity.RatioData;
+import com.borsa.goldsilverratiorobot.entity.RatioData;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
-import service.RatioDataService;
+import com.borsa.goldsilverratiorobot.service.RatioDataService;
 
 @Controller
 public class RatiDataController {

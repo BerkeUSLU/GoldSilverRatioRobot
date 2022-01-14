@@ -1,8 +1,6 @@
 package com.borsa.goldsilverratiorobot;
 
-import controller.RatiDataController;
-import entity.RatioData;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.borsa.goldsilverratiorobot.entity.RatioData;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,11 +8,12 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
-import service.RatioDataService;
+import com.borsa.goldsilverratiorobot.service.RatioDataService;
 
 import java.util.Collections;
 
 @SpringBootApplication
+
 public class GoldSilverRatioRobotApplication {
 
     public static void main(String[] args) {
@@ -26,15 +25,11 @@ public class GoldSilverRatioRobotApplication {
         return builder.build();
     }
 
-    @Bean
-    public RatiDataController ratiDataController(RatioDataService service) {
-
-    }
 
 
 
     @Bean
-    public CommandLineRunner run(RestTemplate restTemplate) {
+    public CommandLineRunner run(RestTemplate restTemplate, RatioDataService service) {
         return new CommandLineRunner() {
             @Override
             public void run(String... args) throws Exception {
@@ -45,7 +40,7 @@ public class GoldSilverRatioRobotApplication {
 
 
                 HttpEntity<String> entity = new HttpEntity<>("body", header);
-                //RatioData data = restTemplate.getForObject("https://www.goldapi.io/api/XAU/XAG/", RatioData.class, entity);
+                //RatioData data = restTemplate.getForObject("https://www.goldapi.io/api/XAU/XAG/", RatioData.class, com.borsa.goldsilverratiorobot.entity);
 
                 ResponseEntity<RatioData> data = restTemplate.exchange("https://www.goldapi.io/api/XAU/XAG/", HttpMethod.GET, entity, RatioData.class);
 

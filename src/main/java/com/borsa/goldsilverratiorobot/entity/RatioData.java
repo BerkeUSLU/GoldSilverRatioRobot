@@ -1,4 +1,4 @@
-package entity;
+package com.borsa.goldsilverratiorobot.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

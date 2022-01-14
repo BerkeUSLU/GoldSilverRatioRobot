@@ -1,11 +1,9 @@
-package service;
+package com.borsa.goldsilverratiorobot.service;
 
-import entity.RatioData;
+import com.borsa.goldsilverratiorobot.entity.RatioData;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import repository.RatioDataRepo;
+import com.borsa.goldsilverratiorobot.repository.RatioDataRepo;
 
 import java.util.List;
 
