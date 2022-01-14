@@ -1,6 +1,8 @@
 package com.borsa.goldsilverratiorobot;
 
 import com.borsa.goldsilverratiorobot.entity.RatioData;
+import com.borsa.goldsilverratiorobot.model.RatioDataTracker;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,35 +22,19 @@ public class GoldSilverRatioRobotApplication {
         SpringApplication.run(GoldSilverRatioRobotApplication.class, args);
     }
 
-    @Bean
-    public RestTemplate restTemplate(RestTemplateBuilder builder) {
-        return builder.build();
-    }
 
 
 
 
     @Bean
-    public CommandLineRunner run(RestTemplate restTemplate, RatioDataService service) {
+    public CommandLineRunner run(RestTemplate restTemplate, RatioDataService service,  RatioDataTracker tracker) {
         return new CommandLineRunner() {
             @Override
             public void run(String... args) throws Exception {
 
-                HttpHeaders header = new HttpHeaders();
-                header.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-                header.set("x-access-token", "goldapi-13rntky45h0b9-io");
-
-
-                HttpEntity<String> entity = new HttpEntity<>("body", header);
-                //RatioData data = restTemplate.getForObject("https://www.goldapi.io/api/XAU/XAG/", RatioData.class, com.borsa.goldsilverratiorobot.entity);
-
-                ResponseEntity<RatioData> data = restTemplate.exchange("https://www.goldapi.io/api/XAU/XAG/", HttpMethod.GET, entity, RatioData.class);
-
-                System.out.println(data);
-
-
-
-                //service.saveRatioData(data.getBody());
+                service.updateRatio();
+                tracker.setDataList(service.getAllData());
+                System.out.println(tracker.analyse());
 
             }
         };
